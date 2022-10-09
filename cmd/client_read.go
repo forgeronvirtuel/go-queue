@@ -17,10 +17,10 @@ func main() {
 	}
 
 	fmt.Println("Listening on address", *address)
-	startNetDial(*address)
+	startNetDialRead(*address)
 }
 
-func startNetDial(addr string) {
+func startNetDialRead(addr string) {
 	conn, err := net.Dial("tcp", addr)
 	if err != nil {
 		log.Fatalln(err)
