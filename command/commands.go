@@ -44,6 +44,7 @@ func NewItem(name string) Item {
 	}
 }
 
+// TODO use maybe the buffer to parse the commadn
 func (i Item) parse(command []byte) ([]string, bool) {
 	if len(command) < len(i.name) {
 		return nil, false
@@ -51,6 +52,9 @@ func (i Item) parse(command []byte) ([]string, bool) {
 	sub := command[:len(i.name)]
 	if bytes.Compare(sub, i.name) != 0 {
 		return nil, false
+	}
+	if len(i.name) == len(command) {
+		return nil, true
 	}
 	remaining := string(command[len(i.name)+1:])
 	return strings.Split(remaining, " "), true
